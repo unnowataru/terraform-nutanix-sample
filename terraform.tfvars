@@ -1,0 +1,11 @@
+username = "admin"
+password = "nutanix/4u"
+endpoint = "0.0.0.0"
+vmname_prefix = "tfvm"
+prov_num = "2"
+prov_cluster_uuid = "0005627c-1b21-6f38-64c6-0cc47acXXXXX"
+prov_subnet_uuid = "7ebac8b7-b6e9-4cda-8956-ee9e100XXXXX"
+prov_diskimage_uuid = "25107393-fd41-4234-a6e2-a1da21aXXXXX"
+prov_vcpu = 2
+prov_sock = 1
+prov_mem = 4096
