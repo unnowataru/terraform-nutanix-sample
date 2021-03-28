@@ -4,7 +4,7 @@
   variable "prov_endpoint" {}
   variable "prov_vmname_prefix" {}
   variable "prov_num" {}
-  variable "prov_subnet_uuid" {}
+  variable "prov_subnet_name" {}
   variable "prov_diskimage_name" {}
   variable "prov_vcpu" {}
   variable "prov_sock" {}
@@ -31,6 +31,10 @@ data "nutanix_image" "ahv_diskimage" {
   image_name = var.prov_diskimage_name
 }
 
+data "nutanix_subnet" "ahv_network" {
+  subnet_name = var.prov_subnet_name
+}
+
 resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
   # General Information
   count                = var.prov_num
@@ -45,7 +49,7 @@ resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
 
   # Configure Network   
   nic_list {
-    subnet_uuid = var.prov_subnet_uuid
+    subnet_uuid = data.nutanix_subnet.ahv_network.metadata.uuid
   }
 
   # Configure Disk
