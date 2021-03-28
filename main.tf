@@ -20,12 +20,8 @@ provider "nutanix" {
   port      = 9440
 }
 
-data "nutanix_clusters" "clusters" {}
-locals {
-	prov_cluster = [
-	for cluster in data.nutanix_clusters.clusters.entities :
-        cluster if cluster.name == var.prov_cluster_name
-	][0]
+data "nutanix_cluster" "cluster" {
+  name = var.prov_cluster_name
 }
 
 resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
@@ -38,7 +34,7 @@ resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
   memory_size_mib      = var.prov_mem
 
   # Configure Cluster
-  cluster_uuid = local.prov_cluster.metadata.uuid
+  cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
 
   # Configure Network   
   nic_list {
