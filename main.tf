@@ -5,7 +5,7 @@
   variable "prov_vmname_prefix" {}
   variable "prov_num" {}
   variable "prov_subnet_uuid" {}
-  variable "prov_diskimage_uuid" {}
+  variable "prov_diskimage_name" {}
   variable "prov_vcpu" {}
   variable "prov_sock" {}
   variable "prov_mem" {}
@@ -25,6 +25,10 @@ locals {
 	for cluster in data.nutanix_clusters.clusters.entities :
 	cluster.metadata.uuid if cluster.service_list[0] != "PRISM_CENTRAL"
 	][0]
+}
+
+data "nutanix_image" "ahv_diskimage" {
+  image_name = var.prov_diskimage_name
 }
 
 resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
@@ -48,7 +52,7 @@ resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
   disk_list {
     data_source_reference = {
         kind = "image"
-        uuid = var.prov_diskimage_uuid
+        uuid = data.nutanix_image.ahv_diskimage.metadata.uuid
       }
     device_properties {
       disk_address = {
