@@ -1,6 +1,7 @@
 prov_username = "admin"
 prov_password = "nutanix/4u"
 prov_endpoint = "0.0.0.0"
+prov_cluster_name   = "AHV"
 prov_vmname_prefix = "tfvm"
 prov_num = "2"
 prov_subnet_uuid = "7ebac8b7-b6e9-4cda-8956-ee9e100XXXXX"
