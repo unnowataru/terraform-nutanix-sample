@@ -22,6 +22,7 @@ Terraform をインストールして、任意のディレクトリで実行し�
 - prov_username = "admin" : PRISMにログインするユーザー名を入力します。
 - prov_password = "nutanix/4u" : 上記ユーザーに対応するパスワードを入力します。
 - prov_endpoint = "0.0.0.0" : PRISMのクラスターIPまたはFQDNを入力します。
+- prov_cluster_name = "AHV" : PRISMのクラスター名を入力します。
 - prov_vmname_prefix = "tfvm" : 仮想マシンの接頭語を入力します。
 - prov_num = "2" : 展開したい台数を入力します。
 - prov_subnet_uuid = "7ebac8b7-b6e9-4cda-8956-ee9e100XXXXX" : 展開対象の仮想マシンのネットワークを指定します。

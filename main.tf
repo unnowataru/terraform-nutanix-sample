@@ -2,6 +2,7 @@
   variable "prov_username" {}
   variable "prov_password" {}
   variable "prov_endpoint" {}
+  variable "prov_cluster_name" {}
   variable "prov_vmname_prefix" {}
   variable "prov_num" {}
   variable "prov_subnet_uuid" {}
@@ -19,12 +20,8 @@ provider "nutanix" {
   port      = 9440
 }
 
-data "nutanix_clusters" "clusters" {}
-locals {
-	prov_cluster = [
-	for cluster in data.nutanix_clusters.clusters.entities :
-	cluster.metadata.uuid if cluster.service_list[0] != "PRISM_CENTRAL"
-	][0]
+data "nutanix_cluster" "cluster" {
+  name = var.prov_cluster_name
 }
 
 resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
@@ -37,7 +34,7 @@ resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
   memory_size_mib      = var.prov_mem
 
   # Configure Cluster
-  cluster_uuid = local.prov_cluster
+  cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
 
   # Configure Network   
   nic_list {
