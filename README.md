@@ -25,8 +25,8 @@ Terraform をインストールして、任意のディレクトリで実行し�
 - prov_cluster_name = "AHV" : PRISMのクラスター名を入力します。
 - prov_vmname_prefix = "tfvm" : 仮想マシンの接頭語を入力します。
 - prov_num = "2" : 展開したい台数を入力します。
-- prov_subnet_uuid = "7ebac8b7-b6e9-4cda-8956-ee9e100XXXXX" : 展開対象の仮想マシンのネットワークを指定します。
-- prov_diskimage_uuid = "25107393-fd41-4234-a6e2-a1da21aXXXXX" : 展開対象の仮想マシンのテンプレートイメージを指定します。
+- prov_subnet_name = "VLAN1112" : 展開対象の仮想マシンのネットワークを指定します。
+- prov_diskimage_name = "unnow_win2016_img" : 展開対象の仮想マシンのテンプレートイメージを指定します。
 - prov_vcpu = 2 : 仮想マシンのスペック (1ソケットあたりのvCPU数)
 - prov_sock = 1 : 仮想マシンのスペック (ソケット数)
 - prov_mem = 4096 : 仮想マシンのスペック (メモリをMB単位で指定)
