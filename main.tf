@@ -10,6 +10,8 @@
   variable "prov_vcpu" {}
   variable "prov_sock" {}
   variable "prov_mem" {}
+  variable "parent_uuid" {}
+  variable "parent_name" {}
 
 # Provider
 provider "nutanix" {
@@ -37,9 +39,11 @@ resource "nutanix_virtual_machine" "nutanix_virtual_machine"{
   count                = var.prov_num
   name                 = "${var.prov_vmname_prefix}${format("%03d",count.index+1)}"
   description          = "Provisioned by Terraform"
-  num_vcpus_per_socket = var.prov_vcpu
-  num_sockets          = var.prov_sock
-  memory_size_mib      = var.prov_mem
+  parent_reference = {
+    "kind" = "project"
+    "name" = var.parent_name
+    "uuid" = var.parent_uuid
+  }
 
   # Configure Cluster
   cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid

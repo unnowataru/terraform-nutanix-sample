@@ -9,3 +9,5 @@ prov_diskimage_name = "unnow_win2016_img"
 prov_vcpu = 2
 prov_sock = 1
 prov_mem = 4096
+parent_uuid = "xxxxxx"
+parent_name = "xxxxxx"
